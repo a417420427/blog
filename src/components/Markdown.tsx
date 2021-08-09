@@ -1,10 +1,12 @@
-import { HTMLAttributes, ReactNode, useMemo } from 'react'
+import { HTMLAttributes, ReactNode } from 'react'
 import * as ReactMarkdown from 'react-markdown'
 import { Prism as SyntaxHighlighter } from 'react-syntax-highlighter'
 import * as styles from 'react-syntax-highlighter/dist/esm/styles/prism'
 import slug from 'remark-slug'
 import c from 'remark-comment-config'
 import 'github-markdown-css'
+import { Comment } from './Comment'
+//import { Comment } from './Comment'
 
 export interface CodeProps extends HTMLAttributes<HTMLElement> {
   node: any
@@ -35,20 +37,19 @@ const components = {
   code,
 }
 
-export const Markdown = (props: { content: string; onlyTitle?: boolean }) => {
-  const titleContent = useMemo(() => {
-    const reg = /\#\s+.*\n+.*\n+/
-    const match = props.content.match(reg)
-    return (match && match[0]) || ''
-  }, [props.content])
-
+export const Markdown = (props: {
+  content: string
+  onlyTitle?: boolean
+  title: string
+}) => {
   return (
     <div className="markdown-container markdown-body">
       <ReactMarkdown
         plugins={[slug as any, c as any]}
         components={components}
-        children={props.onlyTitle ? titleContent : props.content}
+        children={props.content}
       ></ReactMarkdown>
+      <Comment />
     </div>
   )
 }
