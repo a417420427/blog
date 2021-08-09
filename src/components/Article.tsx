@@ -4,8 +4,9 @@ import { Markdown } from './Markdown'
 
 export const SingleArticle = (props: { onlyTitle?: boolean; path: string }) => {
   const [content, setContent] = useState('')
+  console.log(props.path, 'xx')
   const fetchData = useCallback(() => {
-    fetch(props.path)
+    fetch(SOURCE_PATH + props.path)
       .then((res) => res.text())
       .then((res) => {
         setContent(res)
@@ -22,7 +23,6 @@ export const SingleArticle = (props: { onlyTitle?: boolean; path: string }) => {
     if (!match || !match[0]) {
       return
     }
-    console.log(match[0])
 
     function getMatchedString(name: string, content: string) {
       const reg = new RegExp(name + ':' + '(.*)')

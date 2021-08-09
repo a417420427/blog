@@ -1,14 +1,14 @@
 import * as path from 'path'
 import { Config } from 'poi'
-import { ProvidePlugin } from 'webpack'
-
+import { ProvidePlugin, DefinePlugin } from 'webpack'
+const SOURCE_PATH = '/dist'
 const config: Config = {
   entry: 'src/index.tsx',
-  //publicFolder: path.resolve(__dirname),
+  publicFolder: 'source',
   output: {
-    html: {
-      filename: path.resolve(__dirname, 'index.html'),
-    },
+    publicUrl: SOURCE_PATH,
+    dir: path.resolve(__dirname, 'dist'),
+    clean: false,
   },
   plugins: [
     {
@@ -18,11 +18,18 @@ const config: Config = {
       },
     },
   ],
+
   chainWebpack(config) {
     config.plugin('ProvidePlugin').use(ProvidePlugin, [
       {
         React: 'react',
         ReactDOM: 'react-dom',
+      },
+    ])
+    //  SOURCE_PATH: JSON.stringify(SOURCE_PATH)
+    config.plugin('DefinePlugin').use(DefinePlugin, [
+      {
+        SOURCE_PATH: JSON.stringify(SOURCE_PATH),
       },
     ])
   },

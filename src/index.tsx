@@ -5,7 +5,7 @@ import { css } from 'astroturf'
 import './styles/index.scss'
 import { BlogHeader } from './components/BlogHeader/index'
 import { Routers } from './Routers'
-
+console.log(SOURCE_PATH, 'xxx')
 const App = () => {
   return (
     <div className="app">

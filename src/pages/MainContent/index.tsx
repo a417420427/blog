@@ -5,9 +5,7 @@ export const MainContent = () => {
   return (
     <div className={styles.MainContent}>
       <Introduction />
-      <div>
-        <Articles />
-      </div>
+      <Articles />
     </div>
   )
 }
