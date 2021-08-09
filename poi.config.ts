@@ -1,10 +1,15 @@
 import * as path from 'path'
 import { Config } from 'poi'
 import { ProvidePlugin } from 'webpack'
-import { GenerateMenuTreePlugin } from './tools/generateMenu'
+
 const config: Config = {
   entry: 'src/index.tsx',
-  publicFolder: path.resolve(__dirname),
+  //publicFolder: path.resolve(__dirname),
+  output: {
+    html: {
+      filename: path.resolve(__dirname, 'index.html'),
+    },
+  },
   plugins: [
     {
       resolve: '@poi/plugin-typescript',
@@ -13,7 +18,6 @@ const config: Config = {
       },
     },
   ],
-  devServer: {},
   chainWebpack(config) {
     config.plugin('ProvidePlugin').use(ProvidePlugin, [
       {
@@ -21,7 +25,6 @@ const config: Config = {
         ReactDOM: 'react-dom',
       },
     ])
-    config.plugin('GenerateMenuTreePlugin').use(GenerateMenuTreePlugin)
   },
 }
 
