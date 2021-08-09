@@ -1,14 +1,14 @@
 import * as path from 'path'
 import { Config } from 'poi'
 import { ProvidePlugin, DefinePlugin } from 'webpack'
-const SOURCE_PATH = '/dist'
+const isDev = process.env.NODE_ENV === 'development'
+const SOURCE_PATH = !isDev ? '/dist' : ''
+
 const config: Config = {
   entry: 'src/index.tsx',
-  publicFolder: 'source',
+
   output: {
-    publicUrl: SOURCE_PATH,
     dir: path.resolve(__dirname, 'dist'),
-    clean: false,
   },
   plugins: [
     {
@@ -35,4 +35,14 @@ const config: Config = {
   },
 }
 
+if (isDev) {
+  //config.output!.publicUrl = '/dist'
+  config.publicFolder = 'source'
+} else {
+  config.output!.publicUrl = SOURCE_PATH
+  config.publicFolder = 'source'
+  config.output!.html = {
+    filename: path.resolve(__dirname, 'index.html'),
+  }
+}
 export default config
