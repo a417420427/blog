@@ -11,7 +11,7 @@ const menus = [
   },
 ]
 
-export const Menu = (props: { menu: typeof menus[0] }) => {
+const SingleMenu = (props: { menu: typeof menus[0] }) => {
   return <div className={styles.blogHeaderMenu}>{props.menu.title}</div>
 }
 
@@ -19,7 +19,7 @@ export const BlogMenu = () => {
   return (
     <div className={styles.blogHeaderMenus}>
       {menus.map((menu) => (
-        <Menu key={menu.title} menu={menu} />
+        <SingleMenu key={menu.title} menu={menu} />
       ))}
     </div>
   )

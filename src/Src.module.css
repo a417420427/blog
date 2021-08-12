@@ -1,0 +1,10 @@
+.cls1 { /*!*/ }
+.cls2 {
+composes: cls1;
+}
+.cls2 p {
+}
+.cls2 h1 {
+font-size: 32px;
+}
+/*# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbInNyYy9TcmMubW9kdWxlLmNzcyJdLCJuYW1lcyI6W10sIm1hcHBpbmdzIjoiQUFBQSxRQUFRLElBQUksRUFBRTtBQUNkO0FBQ0EsY0FBYztBQU9kO0FBTEE7QUFDQTtBQUNBO0FBQ0EsZUFBZTtBQUNmIiwiZmlsZSI6InNyYy9TcmMubW9kdWxlLmNzcyIsInNvdXJjZXNDb250ZW50IjpbIi5jbHMxIHsgLyohKi8gfVxuLmNsczIge1xuY29tcG9zZXM6IGNsczE7XG5cbnAge1xufVxuaDEge1xuZm9udC1zaXplOiAzMnB4O1xufVxufSJdfQ== */

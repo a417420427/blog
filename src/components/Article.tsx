@@ -1,7 +1,10 @@
 import { css } from 'astroturf'
 import { useCallback, useEffect, useMemo, useState } from 'react'
 import { ArticleSummary } from './ArticleSummary'
-import { Markdown } from './Markdown'
+
+const Markdown = React.lazy(
+  () => import(/* webpackChunkName: 'markdown' */ './Markdown'),
+)
 
 export const SingleArticle = (props: { onlyTitle?: boolean; path: string }) => {
   const [content, setContent] = useState('')
