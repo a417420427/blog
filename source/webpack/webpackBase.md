@@ -106,3 +106,63 @@ module.exports = {
 5. 使用 cache-loader 启用持久化缓存。使用 package.json 中的 postinstall 清除缓存目录。
 
 6. 使用 mode 中的 noParse 属性，可以设置不必要的依赖解析，例如：我们知道 lodash 是无任何依赖包的，就可以设置此选项，缩小文件解析范围。
+
+- 开发阶段
+
+1. 选择合理 devtool，在大多数情况下，cheap-module-eval-source-map 是最好的选择。
+2. 可以直接引用 cdn 上的库文件，使用 externals 配置全局对象，避免打包。
+
+- 生成环境
+
+1. cdn 静态资源
+2. [tree shaking](https://webpack.docschina.org/guides/tree-shaking/) + sideEffects
+
+- 通常用于描述移除 JavaScript 上下文中的未引用代码(dead-code)
+- 在一个纯粹的 ESM 模块世界中，很容易识别出哪些文件有副作用。然而，我们的项目无法达到这种纯度，所以，此时有必要提示 webpack compiler 哪些代码是“纯粹部分”。
+- 通过 package.json 的 "sideEffects" 属性作为标记，向 compiler 提供提示，表明项目中的哪些文件是 "pure(纯正 ES2015 模块)"，由此可以安全地删除文件中未使用的部分。
+- 如果所有代码都不包含副作用，我们就可以简单地将该属性标记为 false，来告知 webpack 它可以安全地删除未用到的 export。
+- 源码必须采用 ES6 模块化语句，不然它将无法生效
+
+```js
+// sample.js
+export function methodA(){
+  console.log('methodA run')
+}
+export function methodB(){
+  console.log('methodB run')
+}
+
+// webpack.config.js
+module.exports = {
+  ...
+  mode: 'development',
+  optimization: {
+   usedExports: true,
+  },
+  module: {
+    rules: [
+      {
+        test: ...
+        // 在规则中添加 sideEffects
+        sideEffects: true
+      }
+    ]
+  }
+}
+
+// package.json
+{
+  name: 'my-project',
+  //
+  sideEffects: boolean | 'path/to/target/file'
+}
+
+// src/index.js 入口文件
+import {methodA} from 'sample'
+methodA()
+```
+
+3. 配置 (scope hoisting)[https://webpack.docschina.org/plugins/module-concatenation-plugin/] 作用域提升，将多个 IIFE 放在一个 IIFE 中。
+
+- 原理： 分析出模块之间的依赖关系，尽可能的把打散的模块合并到一个函数中去，但前提是不能造成代码冗余。 因此只有那些被引用了一次的模块才能被合并。
+- 源码必须采用 ES6 模块化语句，不然它将无法生效

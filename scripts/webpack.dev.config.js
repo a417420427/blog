@@ -6,6 +6,7 @@ module.exports = merge([
   config,
   {
     mode: 'development',
+    devtool: 'cheap-module-eval-source-map',
     devServer: {
       contentBase: resolve(__dirname, '../'),
       port: '8088',

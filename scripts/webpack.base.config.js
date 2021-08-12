@@ -1,4 +1,4 @@
-const Webpack = require('webpack')
+const webpack = require('webpack')
 const HtmlWebpackPlugin = require('html-webpack-plugin')
 const path = require('path')
 const { plugins } = require('./babel.config')
@@ -6,7 +6,7 @@ const { plugins } = require('./babel.config')
 const isDev = process.env.NODE_ENV === 'development'
 const SOURCE_PATH = isDev ? '/source' : '/source'
 /**
- *  @type {Webpack.Configuration}
+ *  @type {webpack.Configuration}
  */
 
 const config = {
@@ -30,6 +30,7 @@ const config = {
         test: /\.tsx?$/,
         use: ['babel-loader', 'ts-loader'],
         exclude: /node_modules/,
+        include: path.join(__dirname, '../src'),
       },
       {
         test: /\.(png|jpe?g|gif|ico|bmp)$/i,
@@ -42,10 +43,12 @@ const config = {
         generator: {
           filename: 'images/[hash][ext][query]',
         },
+        include: path.join(__dirname, '../src/assets'),
       },
       {
         test: /\.s[ac]ss$/i,
         use: ['style-loader', 'css-loader', 'sass-loader'],
+        include: path.join(__dirname, '../src'),
       },
       {
         test: /\.css$/,
@@ -66,7 +69,7 @@ const config = {
             options: { extension: '.module.scss' },
           },
         ],
-        exclude: /node_modules/,
+        include: path.join(__dirname, '../src'),
       },
     ],
   },
@@ -83,7 +86,7 @@ const config = {
     },
   },
   plugins: [
-    new Webpack.ProvidePlugin({
+    new webpack.ProvidePlugin({
       React: 'react',
       ReactDOM: 'react-dom',
     }),
@@ -91,7 +94,7 @@ const config = {
       template: path.resolve(__dirname, '../template/index.html'),
       filename: isDev ? 'index.html' : 'index.html',
     }),
-    new Webpack.DefinePlugin({
+    new webpack.DefinePlugin({
       SOURCE_PATH: JSON.stringify(SOURCE_PATH),
     }),
   ],
