@@ -4,7 +4,7 @@ const path = require('path')
 const { plugins } = require('./babel.config')
 
 const isDev = process.env.NODE_ENV === 'development'
-const SOURCE_PATH = isDev ? '/source' : ''
+const SOURCE_PATH = isDev ? '/source' : '/source'
 /**
  *  @type {Webpack.Configuration}
  */
@@ -89,7 +89,7 @@ const config = {
     }),
     new HtmlWebpackPlugin({
       template: path.resolve(__dirname, '../template/index.html'),
-      filename: isDev ? '../index.html' : 'index.html',
+      filename: isDev ? 'index.html' : 'index.html',
     }),
     new Webpack.DefinePlugin({
       SOURCE_PATH: JSON.stringify(SOURCE_PATH),

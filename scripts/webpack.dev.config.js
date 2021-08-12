@@ -7,7 +7,7 @@ module.exports = merge([
   {
     mode: 'development',
     devServer: {
-      contentBase: resolve(__dirname, '../dist'),
+      contentBase: resolve(__dirname, '../'),
       port: '8088',
       compress: true,
       hot: true,

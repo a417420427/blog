@@ -1,6 +1,7 @@
 import { css } from 'astroturf'
-import { useCallback, useEffect, useMemo, useState } from 'react'
+import { Suspense, useCallback, useEffect, useMemo, useState } from 'react'
 import { ArticleSummary } from './ArticleSummary'
+import { Loading } from './Loading'
 
 const Markdown = React.lazy(
   () => import(/* webpackChunkName: 'markdown' */ './Markdown'),
@@ -43,10 +44,12 @@ export const SingleArticle = (props: { onlyTitle?: boolean; path: string }) => {
   return (
     <div className="single-article">
       {!props.onlyTitle ? (
-        <Markdown
-          title={titleContent.name}
-          content={content.replace(reg, '')}
-        ></Markdown>
+        <Suspense fallback={<Loading />}>
+          <Markdown
+            title={titleContent.name}
+            content={content.replace(reg, '')}
+          ></Markdown>
+        </Suspense>
       ) : (
         <ArticleSummary {...titleContent} />
       )}

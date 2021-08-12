@@ -1,9 +1,8 @@
 import { HTMLAttributes, ReactNode } from 'react'
 import * as ReactMarkdown from 'react-markdown'
-
 import { a11yDark } from 'react-syntax-highlighter/dist/esm/styles/prism'
 import slug from 'remark-slug'
-import 'github-markdown-css'
+
 //import { Comment } from './Comment'
 //import { ReactSyntaxHighlighter } from './ReactSyntaxHighlighter'
 
