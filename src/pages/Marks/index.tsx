@@ -1,9 +1,11 @@
 import { useCallback, useMemo } from 'react'
 import { withRouter } from 'react-router-dom'
-import { RouterPaths } from '../../Routers'
+import { RouterPaths } from '../../services/routerService'
+
 import { getMarksByMenu } from '../../sourceMenu'
 import menu from '../../sourceMenu/menu'
 import styles from './index.module.scss'
+
 const MarkTag = (props: {
   tagName: string
   tagCount: number

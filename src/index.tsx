@@ -3,13 +3,11 @@ import * as React from 'react'
 import * as ReactDOM from 'react-dom'
 import { css } from 'astroturf'
 import './styles/index.scss'
-import { BlogHeader } from './components/BlogHeader/index'
 import { Routers } from './Routers'
 
 const App = () => {
   return (
     <div className="app">
-      <BlogHeader />
       <Routers />
     </div>
   )

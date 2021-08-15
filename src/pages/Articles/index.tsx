@@ -1,7 +1,8 @@
 import { useCallback, useEffect, useState } from 'react'
 import { useParams, withRouter } from 'react-router-dom'
 import { SingleArticle } from '../../components/Article'
-import { RouterPaths } from '../../Routers'
+import { RouterPaths } from '../../services/routerService'
+
 import { findTargetMenuByParams, MenuParams } from '../../sourceMenu'
 import menus from '../../sourceMenu/menu'
 import { join } from '../../utils/path'
