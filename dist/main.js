@@ -263,6 +263,9 @@ const findTargetMenuByParams = (menus, params) => {
 }, {
   "name": "webpackBase.md",
   "parentPath": "/webpack"
+}, {
+  "name": "webpackCompilation.md",
+  "parentPath": "/webpack"
 }]);
 ;// CONCATENATED MODULE: ./src/utils/path.ts
 const join = (path, name) => {
