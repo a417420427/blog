@@ -1,7 +1,7 @@
 /******/ (() => { // webpackBootstrap
 /******/ 	var __webpack_modules__ = ({
 
-/***/ 5734:
+/***/ 1390:
 /***/ ((__unused_webpack_module, __unused_webpack___webpack_exports__, __webpack_require__) => {
 
 "use strict";
@@ -250,6 +250,14 @@ const findTargetMenuByParams = (menus, params) => {
     return menuParams.type === type && menuParams.name === name;
   });
 };
+const getMarksByMenu = menus => {
+  const marks = menus.map(menu => {
+    const parentPath = menu.parentPath.substr(1);
+    const index = parentPath.indexOf('/') === -1 ? parentPath.length - 1 : parentPath.indexOf('/');
+    return parentPath.substr(0, index + 1);
+  });
+  return marks;
+};
 ;// CONCATENATED MODULE: ./src/sourceMenu/menu.ts
 /* harmony default export */ const menu = ([{
   "name": "slashInUrl.md",
@@ -270,6 +278,17 @@ const findTargetMenuByParams = (menus, params) => {
 ;// CONCATENATED MODULE: ./src/utils/path.ts
 const join = (path, name) => {
   return !path ? '/' + name : path.lastIndexOf('/') === path.length - 1 ? path + name : path + '/' + name;
+};
+const getQueryString = (name, search) => {
+  var reg = new RegExp('(^|&)' + name + '=([^&]*)(&|$)', 'i');
+  var r = search.substr(1).match(reg);
+  console.log(reg);
+
+  if (r != null) {
+    return unescape(r[2]);
+  }
+
+  return null;
 };
 // EXTERNAL MODULE: ./node_modules/css-loader/dist/cjs.js!./node_modules/sass-loader/dist/cjs.js!./src/pages/Articles/index.module.scss
 var Articles_index_module = __webpack_require__(3501);
@@ -386,7 +405,11 @@ const ArticleSummarys = (0,react_router/* withRouter */.EN)(({
     const params = getMenuParamsByMenu(menu);
     history.push('/Articles/' + params.type + '/' + params.name);
   }, [history]);
-  return ArticleSummarys_React.createElement("div", null, sortedMenu(menu).map(menu => ArticleSummarys_React.createElement("div", {
+  const avalidMenu = (0,react.useMemo)(() => {
+    const mark = getQueryString('mark', history.location.search);
+    return sortedMenu(menu).filter(menu => !mark || menu.parentPath.startsWith('/' + mark));
+  }, [menu]);
+  return ArticleSummarys_React.createElement("div", null, avalidMenu.map(menu => ArticleSummarys_React.createElement("div", {
     onClick: () => onSummaryClick(menu),
     key: menu.name,
     className: pages_MainContent_index_module.StyledArticle
@@ -399,11 +422,40 @@ const ArticleSummarys = (0,react_router/* withRouter */.EN)(({
 ;// CONCATENATED MODULE: ./src/pages/MainContent/Introduction.tsx
 /* provided dependency */ var Introduction_React = __webpack_require__(7294);
 
-const Introduction = () => {
+
+const IntroductionDetail = (0,react_router/* withRouter */.EN)(({
+  history
+}) => {
+  return Introduction_React.createElement("span", {
+    style: {
+      cursor: 'pointer'
+    },
+    onClick: () => history.push('')
+  }, "\u70B9\u51FB\u67E5\u770B");
+});
+const info = [{
+  title: '职业',
+  content: '前端开发工程师'
+}, {
+  title: '介绍',
+  content: '目前是一名前端工程师,主要负责前端项目的架构， 日常bug修复， 代码review, 以及部分项目的性能优化'
+}, {
+  title: '掌握技能',
+  content: '主流框架(react, vue, jq等), 小程序, prosemirror,'
+}, {
+  title: '详情',
+  content: Introduction_React.createElement(IntroductionDetail, null)
+}];
+const Introduction = (0,react_router/* withRouter */.EN)(() => {
   return Introduction_React.createElement("div", {
     className: pages_MainContent_index_module.Introduction
-  }, "Abort me");
-};
+  }, Introduction_React.createElement("div", {
+    className: pages_MainContent_index_module.IntroductionTitle
+  }, "\u5173\u4E8E\u6211"), info.map(i => Introduction_React.createElement("div", {
+    className: pages_MainContent_index_module.IntroductionList,
+    key: i.title
+  }, i.title, "\u00A0", i.content)));
+});
 ;// CONCATENATED MODULE: ./src/pages/MainContent/index.tsx
 /* provided dependency */ var MainContent_React = __webpack_require__(7294);
 
@@ -414,14 +466,142 @@ const MainContent = () => {
     className: pages_MainContent_index_module.MainContent
   }, MainContent_React.createElement(Introduction, null), MainContent_React.createElement(ArticleSummarys, null));
 };
+// EXTERNAL MODULE: ./node_modules/css-loader/dist/cjs.js!./node_modules/sass-loader/dist/cjs.js!./src/pages/Marks/index.module.scss
+var Marks_index_module = __webpack_require__(8686);
+;// CONCATENATED MODULE: ./src/pages/Marks/index.module.scss
+
+      
+      
+      
+      
+      
+      
+      
+      
+      
+
+var Marks_index_module_options = {};
+
+Marks_index_module_options.styleTagTransform = (styleTagTransform_default());
+Marks_index_module_options.setAttributes = (setAttributesWithoutAttributes_default());
+
+      Marks_index_module_options.insert = insertBySelector_default().bind(null, "head");
+    
+Marks_index_module_options.domAPI = (styleDomAPI_default());
+Marks_index_module_options.insertStyleElement = (insertStyleElement_default());
+
+var Marks_index_module_update = injectStylesIntoStyleTag_default()(Marks_index_module/* default */.Z, Marks_index_module_options);
+
+
+
+
+       /* harmony default export */ const pages_Marks_index_module = (Marks_index_module/* default */.Z && Marks_index_module/* default.locals */.Z.locals ? Marks_index_module/* default.locals */.Z.locals : undefined);
+
+;// CONCATENATED MODULE: ./src/pages/Marks/index.tsx
+/* provided dependency */ var Marks_React = __webpack_require__(7294);
+
+
+
+
+
+
+
+const MarkTag = props => {
+  const onMarkClick = (0,react.useCallback)(() => {
+    props.onEnterMark(props.tagName);
+  }, [props.tagName]);
+  return Marks_React.createElement("div", {
+    onClick: onMarkClick,
+    className: pages_Marks_index_module.MarkTag
+  }, Marks_React.createElement("span", null, props.tagName), Marks_React.createElement("span", {
+    className: pages_Marks_index_module.MarkTagCount
+  }, props.tagCount));
+};
+
+const Marks = (0,react_router/* withRouter */.EN)(({
+  history
+}) => {
+  const marks = getMarksByMenu(menu);
+  const onEnterMark = (0,react.useCallback)(mark => {
+    history.push(RouterPaths.Home + '?mark=' + mark);
+  }, []);
+  const marksWidthCount = (0,react.useMemo)(() => {
+    const noRepeatMarks = Array.from(new Set(marks));
+    return noRepeatMarks.map(mark => {
+      return {
+        count: marks.filter(m => m === mark).length,
+        mark
+      };
+    });
+  }, []);
+  return Marks_React.createElement("div", {
+    className: pages_Marks_index_module.Marks
+  }, marksWidthCount.map(markInfo => Marks_React.createElement(MarkTag, {
+    onEnterMark: onEnterMark,
+    tagCount: markInfo.count,
+    key: markInfo.mark,
+    tagName: markInfo.mark
+  })));
+});
+// EXTERNAL MODULE: ./node_modules/css-loader/dist/cjs.js!./node_modules/sass-loader/dist/cjs.js!./src/pages/PdfPreview/index.module.scss
+var PdfPreview_index_module = __webpack_require__(9506);
+;// CONCATENATED MODULE: ./src/pages/PdfPreview/index.module.scss
+
+      
+      
+      
+      
+      
+      
+      
+      
+      
+
+var PdfPreview_index_module_options = {};
+
+PdfPreview_index_module_options.styleTagTransform = (styleTagTransform_default());
+PdfPreview_index_module_options.setAttributes = (setAttributesWithoutAttributes_default());
+
+      PdfPreview_index_module_options.insert = insertBySelector_default().bind(null, "head");
+    
+PdfPreview_index_module_options.domAPI = (styleDomAPI_default());
+PdfPreview_index_module_options.insertStyleElement = (insertStyleElement_default());
+
+var PdfPreview_index_module_update = injectStylesIntoStyleTag_default()(PdfPreview_index_module/* default */.Z, PdfPreview_index_module_options);
+
+
+
+
+       /* harmony default export */ const pages_PdfPreview_index_module = (PdfPreview_index_module/* default */.Z && PdfPreview_index_module/* default.locals */.Z.locals ? PdfPreview_index_module/* default.locals */.Z.locals : undefined);
+
+;// CONCATENATED MODULE: ./src/pages/PdfPreview/index.tsx
+/* provided dependency */ var PdfPreview_React = __webpack_require__(7294);
+
+
+
+const PdfPreview = (0,react_router/* withRouter */.EN)(({
+  history
+}) => {
+  const name = getQueryString('name', history.location.search);
+  console.log(name);
+  return PdfPreview_React.createElement("div", {
+    className: pages_PdfPreview_index_module.PdfPreview
+  }, PdfPreview_React.createElement("iframe", {
+    src: "/source/\u4E2A\u4EBA\u7B80\u5386(\u5F20\u5E06).pdf"
+  }));
+});
 ;// CONCATENATED MODULE: ./src/Routers/index.tsx
 /* provided dependency */ var Routers_React = __webpack_require__(7294);
 
 
 
+
+
 const RouterPaths = {
   Home: '/',
-  Articles: '/Articles/:type/:name'
+  Articles: '/Articles/:type/:name',
+  Marks: '/Marks',
+  PdfPreview: '/PdfPreview'
 };
 const Routers = () => {
   return Routers_React.createElement(react_router_dom/* HashRouter */.UT, null, Routers_React.createElement(react_router/* Route */.AW, {
@@ -432,6 +612,12 @@ const Routers = () => {
     exact: true,
     component: Articles,
     path: RouterPaths.Articles
+  }), Routers_React.createElement(react_router/* Route */.AW, {
+    component: Marks,
+    path: RouterPaths.Marks
+  }), Routers_React.createElement(react_router/* Route */.AW, {
+    component: PdfPreview,
+    path: RouterPaths.PdfPreview
   }));
 };
 // EXTERNAL MODULE: ./src/Src.module.css
@@ -546,7 +732,7 @@ ___CSS_LOADER_EXPORT___.locals = {
 
 var ___CSS_LOADER_EXPORT___ = _node_modules_css_loader_dist_runtime_api_js__WEBPACK_IMPORTED_MODULE_0___default()(function(i){return i[1]});
 // Module
-___CSS_LOADER_EXPORT___.push([module.id, "._2AY-SIchVbQ94K06P7wDBA{position:fixed;top:0;left:0;width:100%;padding:0 120px;width:100%;height:78px;display:flex;align-items:center;justify-content:space-between;box-shadow:inset 0 -1px 0 #f3f3f4;background:#fff}._3CsZ8GSvcRQv9MzzmrPR4X{font-size:24px}._11lXvxKH6UCGeM3t-g-XJf{display:flex;align-items:center}._3OCFj0cnEZzgul7emCs4nA{margin-left:20px;font-size:18px;width:40px;cursor:pointer;position:relative;text-align:center}._3OCFj0cnEZzgul7emCs4nA:hover::before{visibility:visible;transform:scaleX(1)}._3OCFj0cnEZzgul7emCs4nA::before{content:\"\";position:absolute;width:30px;height:2px;bottom:-4px;left:5px;background-color:#6891ff;visibility:hidden;transform:scaleX(0);transition:all .3s ease-in-out 0s}", ""]);
+___CSS_LOADER_EXPORT___.push([module.id, "._2AY-SIchVbQ94K06P7wDBA{position:fixed;top:0;left:0;width:100%;padding:0 120px;width:100%;height:78px;display:flex;align-items:center;justify-content:space-between;box-shadow:inset 0 -1px 0 #f3f3f4;background:#fff}._3CsZ8GSvcRQv9MzzmrPR4X{font-size:24px}._11lXvxKH6UCGeM3t-g-XJf{display:flex;align-items:center}._3OCFj0cnEZzgul7emCs4nA{margin-left:20px;font-size:18px;width:40px;cursor:pointer;position:relative;text-align:center}._3OCFj0cnEZzgul7emCs4nA:hover::before{visibility:visible;transform:scaleX(1)}._3OCFj0cnEZzgul7emCs4nA::before{content:\"\";position:absolute;width:30px;height:2px;bottom:-4px;left:5px;background-color:#6891ff;visibility:hidden;transform:scaleX(0);transition:all .3s ease-in-out 0s}@media screen and (max-width: 768px){._2AY-SIchVbQ94K06P7wDBA{padding-right:20px;padding-left:20px}}", ""]);
 // Exports
 ___CSS_LOADER_EXPORT___.locals = {
 	"blogHeader": "_2AY-SIchVbQ94K06P7wDBA",
@@ -572,7 +758,7 @@ ___CSS_LOADER_EXPORT___.locals = {
 
 var ___CSS_LOADER_EXPORT___ = _node_modules_css_loader_dist_runtime_api_js__WEBPACK_IMPORTED_MODULE_0___default()(function(i){return i[1]});
 // Module
-___CSS_LOADER_EXPORT___.push([module.id, "._2q5CB_zqhBZVpuwRGvlAeg{padding:20px 120px}", ""]);
+___CSS_LOADER_EXPORT___.push([module.id, "._2q5CB_zqhBZVpuwRGvlAeg{padding:20px 120px}@media screen and (max-width: 768px){._2q5CB_zqhBZVpuwRGvlAeg{padding:20px 20px}}", ""]);
 // Exports
 ___CSS_LOADER_EXPORT___.locals = {
 	"Articles": "_2q5CB_zqhBZVpuwRGvlAeg"
@@ -595,14 +781,64 @@ ___CSS_LOADER_EXPORT___.locals = {
 
 var ___CSS_LOADER_EXPORT___ = _node_modules_css_loader_dist_runtime_api_js__WEBPACK_IMPORTED_MODULE_0___default()(function(i){return i[1]});
 // Module
-___CSS_LOADER_EXPORT___.push([module.id, "._2P0gJ-HpWhUPx1qkIIuASa{position:relative;width:100%;height:100%;padding:0 520px 0 120px}._1LANXFKCXfMvUk2PPwUd7q{width:100%;height:200px}._3rcsyDMbkxM5v2suq-Qjxq{padding:20px 0;cursor:pointer}._3rcsyDMbkxM5v2suq-Qjxq>._23V7ApAHMkIGKcYZ2sqhoe>h3{font-size:18px}._37OeV8JPC0YQMCyUmYi_NA{position:absolute;top:0;right:120px;width:300px;height:400px;border:1px solid #eee}", ""]);
+___CSS_LOADER_EXPORT___.push([module.id, "._2P0gJ-HpWhUPx1qkIIuASa{position:relative;width:100%;height:100%;padding:0 520px 0 120px}._1LANXFKCXfMvUk2PPwUd7q{width:100%;height:200px}._3rcsyDMbkxM5v2suq-Qjxq{padding:20px 0;cursor:pointer}._3rcsyDMbkxM5v2suq-Qjxq>._23V7ApAHMkIGKcYZ2sqhoe>h3{font-size:18px}._37OeV8JPC0YQMCyUmYi_NA{position:absolute;top:0;right:120px;width:300px;height:400px}._20Hx_pvbn_eQyMqP03-bSP{font-size:18px;line-height:30px;font-weight:500;padding:0 5px;color:#3e3b3f;border-bottom:1px solid #dedede;padding-bottom:6px;padding-top:20px}._3GJszXxsWL2ejk-_0E-2wP{line-height:24px;padding:10px;font-size:14px}@media screen and (max-width: 1024px){._2P0gJ-HpWhUPx1qkIIuASa{padding-right:120px}._37OeV8JPC0YQMCyUmYi_NA{display:none}}@media screen and (max-width: 768px){._2P0gJ-HpWhUPx1qkIIuASa{padding-right:20px;padding-left:20px}}", ""]);
 // Exports
 ___CSS_LOADER_EXPORT___.locals = {
 	"MainContent": "_2P0gJ-HpWhUPx1qkIIuASa",
 	"Articles": "_1LANXFKCXfMvUk2PPwUd7q",
 	"StyledArticle": "_3rcsyDMbkxM5v2suq-Qjxq",
 	"title": "_23V7ApAHMkIGKcYZ2sqhoe",
-	"Introduction": "_37OeV8JPC0YQMCyUmYi_NA"
+	"Introduction": "_37OeV8JPC0YQMCyUmYi_NA",
+	"IntroductionTitle": "_20Hx_pvbn_eQyMqP03-bSP",
+	"IntroductionList": "_3GJszXxsWL2ejk-_0E-2wP"
+};
+/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (___CSS_LOADER_EXPORT___);
+
+
+/***/ }),
+
+/***/ 8686:
+/***/ ((module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "Z": () => (__WEBPACK_DEFAULT_EXPORT__)
+/* harmony export */ });
+/* harmony import */ var _node_modules_css_loader_dist_runtime_api_js__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(3645);
+/* harmony import */ var _node_modules_css_loader_dist_runtime_api_js__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_node_modules_css_loader_dist_runtime_api_js__WEBPACK_IMPORTED_MODULE_0__);
+// Imports
+
+var ___CSS_LOADER_EXPORT___ = _node_modules_css_loader_dist_runtime_api_js__WEBPACK_IMPORTED_MODULE_0___default()(function(i){return i[1]});
+// Module
+___CSS_LOADER_EXPORT___.push([module.id, "._2wi5CFT0E3E25rfeh8_DOI{display:flex;padding:20px}._2ahCRKTBWJE1bVEwCCOxVR{position:relative;transition:transform .3s;margin-right:40px;margin-bottom:14px;font-size:16px;cursor:pointer;text-align:center;cursor:pointer;color:#4183c4}._2ahCRKTBWJE1bVEwCCOxVR::before{content:\"\";position:absolute;width:100%;height:2px;bottom:-5px;left:0;background-color:#6891ff;visibility:hidden;transform:scaleX(0);transition:all .3s ease-in-out 0s}._2ahCRKTBWJE1bVEwCCOxVR:hover::before{visibility:visible;transform:scaleX(1)}._3QWkgwtrrToc6b0071teUm{position:absolute;right:-10px;top:-10px;font-size:12px}", ""]);
+// Exports
+___CSS_LOADER_EXPORT___.locals = {
+	"Marks": "_2wi5CFT0E3E25rfeh8_DOI",
+	"MarkTag": "_2ahCRKTBWJE1bVEwCCOxVR",
+	"MarkTagCount": "_3QWkgwtrrToc6b0071teUm"
+};
+/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (___CSS_LOADER_EXPORT___);
+
+
+/***/ }),
+
+/***/ 9506:
+/***/ ((module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "Z": () => (__WEBPACK_DEFAULT_EXPORT__)
+/* harmony export */ });
+/* harmony import */ var _node_modules_css_loader_dist_runtime_api_js__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(3645);
+/* harmony import */ var _node_modules_css_loader_dist_runtime_api_js__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_node_modules_css_loader_dist_runtime_api_js__WEBPACK_IMPORTED_MODULE_0__);
+// Imports
+
+var ___CSS_LOADER_EXPORT___ = _node_modules_css_loader_dist_runtime_api_js__WEBPACK_IMPORTED_MODULE_0___default()(function(i){return i[1]});
+// Module
+___CSS_LOADER_EXPORT___.push([module.id, "._3mIK75-M3MZpuXgTA_aaxt{width:100%;height:100%}._3mIK75-M3MZpuXgTA_aaxt>iframe{width:100%;height:100%}", ""]);
+// Exports
+___CSS_LOADER_EXPORT___.locals = {
+	"PdfPreview": "_3mIK75-M3MZpuXgTA_aaxt"
 };
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (___CSS_LOADER_EXPORT___);
 
@@ -2937,7 +3173,7 @@ function _objectWithoutPropertiesLoose(source, excluded) {
 /******/ 	// startup
 /******/ 	// Load entry module and return exports
 /******/ 	// This entry module depends on other loaded chunks and execution need to be delayed
-/******/ 	var __webpack_exports__ = __webpack_require__.O(undefined, [216], () => (__webpack_require__(5734)))
+/******/ 	var __webpack_exports__ = __webpack_require__.O(undefined, [216], () => (__webpack_require__(1390)))
 /******/ 	__webpack_exports__ = __webpack_require__.O(__webpack_exports__);
 /******/ 	
 /******/ })()

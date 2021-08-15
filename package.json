@@ -38,6 +38,7 @@
     "yarn": "^1.22.11"
   },
   "dependencies": {
+    "@c4605/toolconfs": "^5.2.2",
     "astroturf": "^1.0.0-beta.22",
     "github-markdown-css": "^4.0.0",
     "html-webpack-plugin": "^5.3.2",

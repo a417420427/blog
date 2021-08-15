@@ -5,3 +5,13 @@ export const join = (path: string, name: string) => {
     ? path + name
     : path + '/' + name
 }
+
+export const getQueryString = (name: string, search: string) => {
+  var reg = new RegExp('(^|&)' + name + '=([^&]*)(&|$)', 'i')
+  var r = search.substr(1).match(reg)
+  console.log(reg)
+  if (r != null) {
+    return unescape(r[2])
+  }
+  return null
+}

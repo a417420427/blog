@@ -19,3 +19,15 @@ export const findTargetMenuByParams = (menus: Menu[], params: MenuParams) => {
     return menuParams.type === type && menuParams.name === name
   })
 }
+
+export const getMarksByMenu = (menus: Menu[]) => {
+  const marks = menus.map((menu) => {
+    const parentPath = menu.parentPath.substr(1)
+    const index =
+      parentPath.indexOf('/') === -1
+        ? parentPath.length - 1
+        : parentPath.indexOf('/')
+    return parentPath.substr(0, index + 1)
+  })
+  return marks
+}

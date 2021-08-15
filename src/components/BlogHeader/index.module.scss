@@ -45,3 +45,10 @@
     transition: all 0.3s ease-in-out 0s;
   }
 }
+
+@media screen and(max-width: 768px ) {
+  .blogHeader {
+    padding-right: 20px;
+    padding-left: 20px;
+  }
+}

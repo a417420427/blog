@@ -1,11 +1,12 @@
-import { useCallback } from 'react'
+import { useCallback, useMemo } from 'react'
 import { withRouter } from 'react-router-dom'
 import { SingleArticle } from '../../components/Article'
 import { getMenuParamsByMenu } from '../../sourceMenu'
 import menus from '../../sourceMenu/menu'
-import { join } from '../../utils/path'
+import { getQueryString, join } from '../../utils/path'
 import { sortedMenu } from '../../utils/sort'
 import styles from './index.module.scss'
+
 export const ArticleSummarys = withRouter(({ history }) => {
   const onSummaryClick = useCallback(
     (menu: Menu) => {
@@ -14,9 +15,16 @@ export const ArticleSummarys = withRouter(({ history }) => {
     },
     [history],
   )
+  const avalidMenu = useMemo(() => {
+    const mark = getQueryString('mark', history.location.search)
+
+    return sortedMenu(menus).filter(
+      (menu) => !mark || menu.parentPath.startsWith('/' + mark),
+    )
+  }, [menus])
   return (
     <div>
-      {sortedMenu(menus).map((menu) => (
+      {avalidMenu.map((menu) => (
         <div
           onClick={() => onSummaryClick(menu)}
           key={menu.name}
