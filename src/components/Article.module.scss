@@ -7,4 +7,11 @@
   font-size: 14px;
   line-height: 24px;
   color: #666;
+
+  overflow: hidden;
+  text-overflow: ellipsis;
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  overflow: hidden;
+  -webkit-box-orient: vertical;
 }

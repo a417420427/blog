@@ -1,7 +1,7 @@
 /******/ (() => { // webpackBootstrap
 /******/ 	var __webpack_modules__ = ({
 
-/***/ 1390:
+/***/ 695:
 /***/ ((__unused_webpack_module, __unused_webpack___webpack_exports__, __webpack_require__) => {
 
 "use strict";
@@ -59,6 +59,10 @@ var update = injectStylesIntoStyleTag_default()(styles/* default */.Z, options);
 
        /* harmony default export */ const src_styles = (styles/* default */.Z && styles/* default.locals */.Z.locals ? styles/* default.locals */.Z.locals : undefined);
 
+// EXTERNAL MODULE: ./node_modules/react-router-dom/esm/react-router-dom.js
+var react_router_dom = __webpack_require__(3727);
+// EXTERNAL MODULE: ./node_modules/react-router/esm/react-router.js
+var react_router = __webpack_require__(6550);
 // EXTERNAL MODULE: ./node_modules/css-loader/dist/cjs.js!./node_modules/sass-loader/dist/cjs.js!./src/components/BlogHeader/index.module.scss
 var index_module = __webpack_require__(7393);
 ;// CONCATENATED MODULE: ./src/components/BlogHeader/index.module.scss
@@ -90,31 +94,51 @@ var index_module_update = injectStylesIntoStyleTag_default()(index_module/* defa
 
        /* harmony default export */ const BlogHeader_index_module = (index_module/* default */.Z && index_module/* default.locals */.Z.locals ? index_module/* default.locals */.Z.locals : undefined);
 
+;// CONCATENATED MODULE: ./src/services/routerService.ts
+const RouterPaths = {
+  Home: '/',
+  Articles: '/Articles/:type/:name',
+  Marks: '/Marks',
+  PdfPreview: '/PdfPreview'
+};
 ;// CONCATENATED MODULE: ./src/components/BlogHeader/BlogMenus.tsx
 /* provided dependency */ var React = __webpack_require__(7294);
 
+
+
 const menus = [{
-  title: '首页'
+  title: '首页',
+  path: RouterPaths.Home
 }, {
-  title: '归档'
+  title: '归档',
+  path: RouterPaths.Marks
 }, {
-  title: '标签'
+  title: '标签',
+  path: RouterPaths.Marks
 }];
 
 const SingleMenu = props => {
   return React.createElement("div", {
+    onClick: () => props.onMenuClick(props.menu.path),
     className: BlogHeader_index_module.blogHeaderMenu
   }, props.menu.title);
 };
 
-const BlogMenu = () => {
+const BlogMenu = (0,react_router/* withRouter */.EN)(({
+  history
+}) => {
+  const onMenuClick = path => {
+    history.push(path);
+  };
+
   return React.createElement("div", {
     className: BlogHeader_index_module.blogHeaderMenus
   }, menus.map(menu => React.createElement(SingleMenu, {
+    onMenuClick: onMenuClick,
     key: menu.title,
     menu: menu
   })));
-};
+});
 ;// CONCATENATED MODULE: ./src/components/BlogHeader/index.tsx
 /* provided dependency */ var BlogHeader_React = __webpack_require__(7294);
 
@@ -129,10 +153,6 @@ const BlogHeader = props => {
     className: "blog-header-menu"
   }, BlogHeader_React.createElement(BlogMenu, null)));
 };
-// EXTERNAL MODULE: ./node_modules/react-router-dom/esm/react-router-dom.js
-var react_router_dom = __webpack_require__(3727);
-// EXTERNAL MODULE: ./node_modules/react-router/esm/react-router.js
-var react_router = __webpack_require__(6550);
 // EXTERNAL MODULE: ./node_modules/css-loader/dist/cjs.js!./node_modules/sass-loader/dist/cjs.js!./src/components/Article.module.scss
 var Article_module = __webpack_require__(3810);
 ;// CONCATENATED MODULE: ./src/components/Article.module.scss
@@ -262,6 +282,9 @@ const getMarksByMenu = menus => {
 /* harmony default export */ const menu = ([{
   "name": "slashInUrl.md",
   "parentPath": "/broswer"
+}, {
+  "name": "githubActions.md",
+  "parentPath": "/github"
 }, {
   "name": "eventLoop.md",
   "parentPath": "/javascript"
@@ -597,14 +620,10 @@ const PdfPreview = (0,react_router/* withRouter */.EN)(({
 
 
 
-const RouterPaths = {
-  Home: '/',
-  Articles: '/Articles/:type/:name',
-  Marks: '/Marks',
-  PdfPreview: '/PdfPreview'
-};
+
+
 const Routers = () => {
-  return Routers_React.createElement(react_router_dom/* HashRouter */.UT, null, Routers_React.createElement(react_router/* Route */.AW, {
+  return Routers_React.createElement(react_router_dom/* HashRouter */.UT, null, Routers_React.createElement(BlogHeader, null), Routers_React.createElement(react_router/* Route */.AW, {
     path: RouterPaths.Home,
     component: MainContent,
     exact: true
@@ -630,11 +649,10 @@ var Src_module = __webpack_require__(113);
 
 
 
-
 const App = () => {
   return react.createElement("div", {
     className: "app"
-  }, react.createElement(BlogHeader, null), react.createElement(Routers, null));
+  }, react.createElement(Routers, null));
 };
 
 function renderApp() {
@@ -3173,7 +3191,7 @@ function _objectWithoutPropertiesLoose(source, excluded) {
 /******/ 	// startup
 /******/ 	// Load entry module and return exports
 /******/ 	// This entry module depends on other loaded chunks and execution need to be delayed
-/******/ 	var __webpack_exports__ = __webpack_require__.O(undefined, [216], () => (__webpack_require__(1390)))
+/******/ 	var __webpack_exports__ = __webpack_require__.O(undefined, [216], () => (__webpack_require__(695)))
 /******/ 	__webpack_exports__ = __webpack_require__.O(__webpack_exports__);
 /******/ 	
 /******/ })()

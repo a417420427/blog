@@ -2,6 +2,7 @@ const webpack = require('webpack')
 const HtmlWebpackPlugin = require('html-webpack-plugin')
 const path = require('path')
 const { plugins } = require('./babel.config')
+const personalConfig = require('../config')
 
 const isDev = process.env.NODE_ENV === 'development'
 const SOURCE_PATH = isDev ? '/source' : '/source'
@@ -93,6 +94,10 @@ const config = {
     new HtmlWebpackPlugin({
       template: path.resolve(__dirname, '../template/index.html'),
       filename: isDev ? 'index.html' : 'index.html',
+      title: personalConfig.title,
+      description: personalConfig.description,
+      favicon: personalConfig.favicon,
+      // templateContent: generateHtmlTemplate,
     }),
     new webpack.DefinePlugin({
       SOURCE_PATH: JSON.stringify(SOURCE_PATH),
@@ -101,3 +106,20 @@ const config = {
 }
 
 module.exports = config
+
+function generateHtmlTemplate({ htmlWebpackPlugin }) {
+  return `
+  <html>
+    <head>
+    <title>${personalConfig.title}</title>
+    <link rel="icon" href="${personalConfig.favicon}">
+    <meta name="description" content="${personalConfig.description}">
+      ${htmlWebpackPlugin.tags.headTags}
+    </head>
+    <body>
+      <div id="app"></div>
+      ${htmlWebpackPlugin.tags.bodyTags}
+    </body>
+  </html>
+`
+}

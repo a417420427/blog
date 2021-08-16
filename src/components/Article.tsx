@@ -1,5 +1,12 @@
 import { css } from 'astroturf'
-import { Suspense, useCallback, useEffect, useMemo, useState } from 'react'
+import {
+  Suspense,
+  useCallback,
+  useLayoutEffect,
+  useMemo,
+  useRef,
+  useState,
+} from 'react'
 import { ArticleSummary } from './ArticleSummary'
 import { Loading } from './Loading'
 
@@ -9,17 +16,24 @@ const Markdown = React.lazy(
 
 export const SingleArticle = (props: { onlyTitle?: boolean; path: string }) => {
   const [content, setContent] = useState('')
+  const isCanceled = useRef(false)
   const reg = /<!--[\S\s]*.*[\S\s]*?-->/
+
   const fetchData = useCallback(() => {
-    fetch(SOURCE_PATH + props.path)
+    return fetch(SOURCE_PATH + props.path)
       .then((res) => res.text())
       .then((res) => {
-        setContent(res)
+        if (!isCanceled.current) {
+          setContent(res)
+        }
       })
-  }, [])
+  }, [props.path])
 
-  useEffect(() => {
+  useLayoutEffect(() => {
     fetchData()
+    return () => {
+      isCanceled.current = true
+    }
   }, [fetchData])
 
   const titleContent = useMemo(() => {
