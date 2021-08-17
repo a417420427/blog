@@ -16,8 +16,6 @@ __webpack_require__.r(__webpack_exports__);
 /* provided dependency */ var React = __webpack_require__(7294);
 
 
- //import { Comment } from './Comment'
-//import { ReactSyntaxHighlighter } from './ReactSyntaxHighlighter'
 
 
 

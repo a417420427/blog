@@ -1,8 +1,0 @@
-.cls1 { /*!*/ }
-.cls2 {
-composes: cls1;
-}
-.cls2 .single-article {
-padding: 20px 0;
-}
-/*# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbInNyYy9jb21wb25lbnRzL0FydGljbGUubW9kdWxlLmNzcyJdLCJuYW1lcyI6W10sIm1hcHBpbmdzIjoiQUFBQSxRQUFRLElBQUksRUFBRTtBQUNkO0FBQ0EsY0FBYztBQUtkO0FBSEE7QUFDQSxlQUFlO0FBQ2YiLCJmaWxlIjoic3JjL2NvbXBvbmVudHMvQXJ0aWNsZS5tb2R1bGUuY3NzIiwic291cmNlc0NvbnRlbnQiOlsiLmNsczEgeyAvKiEqLyB9XG4uY2xzMiB7XG5jb21wb3NlczogY2xzMTtcblxuLnNpbmdsZS1hcnRpY2xlIHtcbnBhZGRpbmc6IDIwcHggMDtcbn1cbn0iXX0= */

@@ -28,17 +28,23 @@
 name: Deno
 
 on:
+  #  action 执行时间
+  # 推送后执行 [分支名]
   push:
     branches: [master]
+  # 拉取后执行 [分支名]
   pull_request:
     branches: [master]
 
 jobs:
   test:
+    # 运行系统
     runs-on: ubuntu-latest
-
+    # 执行步骤
     steps:
+      # 步骤名称
       - name: Setup repo
+        # 步骤内容
         uses: actions/checkout@v2
 
       - name: Setup Deno
@@ -57,3 +63,18 @@ jobs:
       - name: Run tests
         run: deno test -A --unstable
 ```
+
+5. 根据自己的情况,增加或修改 action 的步骤即可, 我这边增加了一个 node 版本的选择+安装依赖+打包 3 个步骤
+
+```yaml
+ - name: Use Node.js ${{ matrix.node-version }}
+    uses: actions/setup-node@v1
+
+  - name: Install dependencies
+    run: npm install
+
+  - name: build package
+    run: make default
+```
+
+6. 提交 pr， 然后查看 action 是否生效

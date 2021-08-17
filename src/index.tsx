@@ -1,7 +1,6 @@
 import 'react-hot-loader'
 import * as React from 'react'
 import * as ReactDOM from 'react-dom'
-import { css } from 'astroturf'
 import './styles/index.scss'
 import { Routers } from './Routers'
 
@@ -17,11 +16,3 @@ function renderApp() {
 }
 
 renderApp()
-
-css`
-  p {
-  }
-  h1 {
-    font-size: 32px;
-  }
-`

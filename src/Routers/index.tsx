@@ -9,7 +9,7 @@ import { RouterPaths } from '../services/routerService'
 export const Routers = () => {
   return (
     <Router>
-      {/* <BlogHeader /> */}
+      <BlogHeader />
       <Route path={RouterPaths.Home} component={MainContent} exact />
       <Route exact component={Articles} path={RouterPaths.Articles}></Route>
       <Route component={Marks} path={RouterPaths.Marks}></Route>

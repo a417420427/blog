@@ -29,7 +29,14 @@ const config = {
     rules: [
       {
         test: /\.tsx?$/,
-        use: ['babel-loader', 'ts-loader'],
+        use: [
+          'babel-loader',
+          {
+            loader: 'astroturf/loader',
+            options: { extension: '.module.scss' },
+          },
+          'ts-loader',
+        ],
         exclude: /node_modules/,
         include: path.join(__dirname, '../src'),
       },
@@ -49,27 +56,6 @@ const config = {
       {
         test: /\.s[ac]ss$/i,
         use: ['style-loader', 'css-loader', 'sass-loader'],
-        include: path.join(__dirname, '../src'),
-      },
-      {
-        test: /\.css$/,
-        use: ['css-loader', 'sass-loader'],
-      },
-      {
-        test: /\.jsx?$/,
-        use: [
-          {
-            loader: 'babel-loader',
-            options: {
-              presets: ['@babel/preset-env'],
-              plugins,
-            },
-          },
-          {
-            loader: 'astroturf/loader',
-            options: { extension: '.module.scss' },
-          },
-        ],
         include: path.join(__dirname, '../src'),
       },
     ],
@@ -123,3 +109,16 @@ function generateHtmlTemplate({ htmlWebpackPlugin }) {
   </html>
 `
 }
+
+// const config = {
+//   entry: {
+//     // 入口文件, 可以是相对路径或绝对路径
+//     main: './src/index.js',
+//   },
+//   output: {
+//     // 输出的文件名
+//     filename: '[name].js',
+//     // 输入路径 必须是绝对路径
+//     path: path.resolve(__dirname, '../dist'),
+//   },
+// }

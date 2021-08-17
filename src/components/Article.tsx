@@ -1,4 +1,3 @@
-import { css } from 'astroturf'
 import {
   Suspense,
   useCallback,
@@ -70,9 +69,3 @@ export const SingleArticle = (props: { onlyTitle?: boolean; path: string }) => {
     </div>
   )
 }
-
-css`
-  .single-article {
-    padding: 20px 0;
-  }
-`
