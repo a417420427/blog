@@ -6,7 +6,7 @@ export const PdfPreview = withRouter(({ history }) => {
   console.log(name)
   return (
     <div className={styles.PdfPreview}>
-      <iframe src="/source/个人简历(张帆).pdf"></iframe>
+      <iframe src="/config/个人简历(张帆).pdf"></iframe>
     </div>
   )
 })

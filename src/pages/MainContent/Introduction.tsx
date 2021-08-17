@@ -1,4 +1,5 @@
 import { withRouter } from 'react-router-dom'
+import { RouterPaths } from '../../services/routerService'
 import styles from './index.module.scss'
 
 const IntroductionDetail = withRouter(({ history }) => {
@@ -7,7 +8,7 @@ const IntroductionDetail = withRouter(({ history }) => {
       style={{
         cursor: 'pointer',
       }}
-      onClick={() => history.push('')}
+      onClick={() => history.push(RouterPaths.PdfPreview)}
     >
       点击查看
     </span>

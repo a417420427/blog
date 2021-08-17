@@ -4,7 +4,7 @@
   "main": "index.js",
   "license": "MIT",
   "scripts": {
-    "start": "cross-env NODE_ENV=development webpack serve",
+    "start": "node tools/generateMenu.js && cross-env NODE_ENV=development webpack serve",
     "build": "cross-env NODE_ENV=production webpack"
   },
   "devDependencies": {
