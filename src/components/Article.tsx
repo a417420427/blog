@@ -53,11 +53,14 @@ export const SingleArticle = (props: { onlyTitle?: boolean; path: string }) => {
       const matchedName = content.match(reg)
       return ((matchedName && matchedName[0]) || '').replace(name + ':', '')
     }
+
+    const matchedtype = props.path.match(/\/(\w+)\//)
     return {
       name: getMatchedString('name', match[0]),
       description: getMatchedString('description', match[0]),
+      type: (matchedtype && matchedtype[1]) || '',
     }
-  }, [content])
+  }, [content, props.path])
   return (
     <div className="single-article">
       {!props.onlyTitle ? (

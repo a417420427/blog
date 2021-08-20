@@ -3,7 +3,7 @@ export const DownloadFile = () => {
   return (
     <div
       style={{
-        position: 'fixed',
+        position: 'absolute',
         top: 20,
         right: 20,
         cursor: 'pointer',
