@@ -39,6 +39,21 @@ export const expirences: {
   content: ExpirenceCardProps[]
 }[] = [
   {
+    title: '教育经历',
+    content: [
+      {
+        title: '2010.09-2014.07',
+        titleContent: '中国地质大学(武汉)',
+        cards: [
+          {
+            title: '安全工程',
+            items: [],
+          },
+        ],
+      },
+    ],
+  },
+  {
     title: '项目经历',
     content: [
       {
