@@ -3,6 +3,7 @@ import { Expirences } from './Expirences'
 import { BaseInfo } from './BaseInfo'
 import styles from './index.module.scss'
 import { useLayoutEffect } from 'react'
+import { DownloadFile } from './Components/DownloadFile'
 
 export const Resume = () => {
   useLayoutEffect(() => {
@@ -16,6 +17,7 @@ export const Resume = () => {
     <div className={styles.Resume}>
       <BaseInfo baseInfo={baseInfo} />
       <Expirences expirences={expirences} />
+      <DownloadFile />
     </div>
   )
 }
