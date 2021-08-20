@@ -2,6 +2,3 @@ node_modules
 .astroturf
 .DS_Store
 .yarn-error.log
-
-!node_modules/webpack/lib/*
-dist
