@@ -10,6 +10,10 @@ const SOURCE_PATH = isDev ? '/source' : '/source'
  *  @type {webpack.Configuration}
  */
 
+const includePaths = [
+  path.join(__dirname, '../src'),
+  path.join(__dirname, '../introduction'),
+]
 const config = {
   context: path.resolve(__dirname, '../'),
   entry: {
@@ -18,7 +22,7 @@ const config = {
   output: {
     filename: '[name].js',
     path: path.resolve(__dirname, '../dist'),
-    chunkFilename: '[name].[id].js',
+    chunkFilename: '[name].js',
   },
   resolve: {
     extensions: ['', '.tsx', '.ts', '.js', '.scss'],
@@ -38,7 +42,7 @@ const config = {
           'ts-loader',
         ],
         exclude: /node_modules/,
-        include: path.join(__dirname, '../src'),
+        include: includePaths,
       },
       {
         test: /\.(png|jpe?g|gif|ico|bmp)$/i,
@@ -51,12 +55,12 @@ const config = {
         generator: {
           filename: 'images/[hash][ext][query]',
         },
-        include: path.join(__dirname, '../src/assets'),
+        include: includePaths,
       },
       {
         test: /\.s[ac]ss$/i,
         use: ['style-loader', 'css-loader', 'sass-loader'],
-        include: path.join(__dirname, '../src'),
+        include: includePaths,
       },
     ],
   },

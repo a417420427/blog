@@ -10,7 +10,11 @@ import { ArticleSummary } from './ArticleSummary'
 import { Loading } from './Loading'
 
 const Markdown = React.lazy(
-  () => import(/* webpackChunkName: 'markdown' */ './Markdown'),
+  () =>
+    import(
+      /* webpackChunkName: "Markdown" */
+      /* webpackMode: "lazy" */ './Markdown'
+    ),
 )
 
 export const SingleArticle = (props: { onlyTitle?: boolean; path: string }) => {

@@ -3,4 +3,5 @@ export const RouterPaths = {
   Articles: '/Articles/:type/:name',
   Marks: '/Marks',
   PdfPreview: '/PdfPreview',
+  Resume: '/Resume',
 }

@@ -8,7 +8,7 @@ const IntroductionDetail = withRouter(({ history }) => {
       style={{
         cursor: 'pointer',
       }}
-      onClick={() => history.push(RouterPaths.PdfPreview)}
+      onClick={() => history.push(RouterPaths.Resume)}
     >
       点击查看
     </span>

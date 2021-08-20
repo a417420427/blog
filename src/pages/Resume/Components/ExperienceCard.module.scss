@@ -1,0 +1,56 @@
+.ExpirenceCard {
+  padding: 20px 0;
+  .ExpirenceCardTitle {
+    font-size: 16px;
+    line-height: 30px;
+    padding-bottom: 12px;
+    > h3 {
+      display: flex;
+      justify-content: space-between;
+    }
+  }
+}
+.ExpirenceItem {
+  padding-bottom: 20px;
+  > h3 {
+    justify-content: space-between;
+    display: flex;
+
+    > div {
+      font-size: 14px;
+      font-weight: bold;
+    }
+  }
+  > ul {
+    padding-top: 12px;
+    > li {
+      font-size: 14px;
+      line-height: 18px;
+      padding: 4px 0;
+      > p {
+        text-indent: 12px;
+      }
+    }
+  }
+}
+
+@media screen and(max-width: 768px) {
+  .ExpirenceCard {
+    .ExpirenceCardTitle {
+      > h3 {
+        display: block;
+        > span {
+          display: block;
+        }
+      }
+    }
+  }
+  .ExpirenceItem {
+    > h3 {
+      display: block;
+      > span {
+        display: block;
+      }
+    }
+  }
+}
