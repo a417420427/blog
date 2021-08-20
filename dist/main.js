@@ -296,10 +296,16 @@ const getMarksByMenu = menus => {
   "name": "githubComment.md",
   "parentPath": "/github"
 }, {
+  "name": "clone.md",
+  "parentPath": "/javascript"
+}, {
   "name": "eventLoop.md",
   "parentPath": "/javascript"
 }, {
   "name": "eventLoopInNode.md",
+  "parentPath": "/javascript"
+}, {
+  "name": "thisPointer.md",
   "parentPath": "/javascript"
 }, {
   "name": "webpackBase.md",
