@@ -48,7 +48,7 @@ function getMenuTree(folder) {
 function writeMenuFile() {
   const source = getMenuTree(resolve(__dirname, '../source'))
   writeFile(
-    resolve(__dirname, '../src/menu.ts'),
+    resolve(__dirname, '../src/sourceMenu/menu.ts'),
     `export default ${JSON.stringify(source)}`,
     {},
     function (err) {

@@ -1,0 +1,9 @@
+.Articles {
+  padding: 20px 120px;
+}
+
+@media screen and(max-width: 768px ) {
+  .Articles {
+    padding: 20px 20px;
+  }
+}

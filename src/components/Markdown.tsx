@@ -1,11 +1,8 @@
-import { HTMLAttributes, ReactNode, useMemo } from 'react'
+import { HTMLAttributes, ReactNode } from 'react'
 import * as ReactMarkdown from 'react-markdown'
-import { Prism as SyntaxHighlighter } from 'react-syntax-highlighter'
-import * as styles from 'react-syntax-highlighter/dist/esm/styles/prism'
+import { a11yDark } from 'react-syntax-highlighter/dist/esm/styles/prism'
 import slug from 'remark-slug'
-import c from 'remark-comment-config'
-import 'github-markdown-css'
-
+import { PrismLight as ReactSyntaxHighlighter } from 'react-syntax-highlighter'
 export interface CodeProps extends HTMLAttributes<HTMLElement> {
   node: any
   inline?: boolean
@@ -16,8 +13,8 @@ const code = (codeProps: CodeProps) => {
   const { inline, className, children, ...props } = codeProps
   const match = /language-(\w+)/.exec(className || '')
   return !inline && match ? (
-    <SyntaxHighlighter
-      style={styles.a11yDark}
+    <ReactSyntaxHighlighter
+      style={a11yDark}
       language={match[1]}
       wrapLongLines={true}
       PreTag="div"
@@ -35,20 +32,19 @@ const components = {
   code,
 }
 
-export const Markdown = (props: { content: string; onlyTitle?: boolean }) => {
-  const titleContent = useMemo(() => {
-    const reg = /\#\s+.*\n+.*\n+/
-    const match = props.content.match(reg)
-    return (match && match[0]) || ''
-  }, [props.content])
-
+export default (props: {
+  content: string
+  onlyTitle?: boolean
+  title: string
+}) => {
   return (
     <div className="markdown-container markdown-body">
       <ReactMarkdown
-        plugins={[slug as any, c as any]}
+        plugins={[slug as any]}
         components={components}
-        children={props.onlyTitle ? titleContent : props.content}
+        children={props.content}
       ></ReactMarkdown>
+      {/* <Comment /> */}
     </div>
   )
 }

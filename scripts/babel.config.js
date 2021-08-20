@@ -10,6 +10,7 @@ module.exports = {
         extension: '.scss',
         writeFiles: true, // Writes css files to disk using the result of `getFileName`
         getFileName(hostFilePath, pluginsOptions) {
+          console.log('hostFilePath', hostFilePath)
           const basepath = path.join(
             path.dirname(hostFilePath),
             path.basename(hostFilePath, path.extname(hostFilePath)),

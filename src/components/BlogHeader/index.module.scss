@@ -11,9 +11,11 @@
   justify-content: space-between;
   box-shadow: inset 0 -1px 0 #f3f3f4;
   background: #fff;
+  z-index: 1;
 }
 .blogHeaderLogo {
   font-size: 24px;
+  cursor: pointer;
 }
 .blogHeaderMenus {
   display: flex;
@@ -43,5 +45,12 @@
     visibility: hidden;
     transform: scaleX(0);
     transition: all 0.3s ease-in-out 0s;
+  }
+}
+
+@media screen and(max-width: 768px ) {
+  .blogHeader {
+    padding-right: 20px;
+    padding-left: 20px;
   }
 }

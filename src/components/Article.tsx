@@ -1,33 +1,57 @@
-import { css } from 'astroturf'
-import { useCallback, useEffect, useMemo, useState } from 'react'
-import { Markdown } from './Markdown'
+import {
+  Suspense,
+  useCallback,
+  useLayoutEffect,
+  useMemo,
+  useRef,
+  useState,
+} from 'react'
+import { ArticleSummary } from './ArticleSummary'
+import { Loading } from './Loading'
+
+const Markdown = React.lazy(
+  () =>
+    import(
+      /* webpackChunkName: "Markdown" */
+      /* webpackMode: "lazy" */ './Markdown'
+    ),
+)
 
 export const SingleArticle = (props: { onlyTitle?: boolean; path: string }) => {
   const [content, setContent] = useState('')
-  console.log(props.path, 'xx')
+  const isCanceled = useRef(false)
+  const reg = /<!--[\S\s]*.*[\S\s]*?-->/
+
   const fetchData = useCallback(() => {
-    fetch(SOURCE_PATH + props.path)
+    return fetch(SOURCE_PATH + props.path)
       .then((res) => res.text())
       .then((res) => {
-        setContent(res)
+        if (!isCanceled.current) {
+          setContent(res)
+        }
       })
-  }, [])
+  }, [props.path])
 
-  useEffect(() => {
+  useLayoutEffect(() => {
     fetchData()
+    return () => {
+      isCanceled.current = true
+    }
   }, [fetchData])
 
   const titleContent = useMemo(() => {
-    const reg = /<!--[\S\s]*.*[\S\s]*?-->/
     const match = content.match(reg)
     if (!match || !match[0]) {
-      return
+      return {
+        name: '',
+        description: '',
+      }
     }
 
     function getMatchedString(name: string, content: string) {
       const reg = new RegExp(name + ':' + '(.*)')
       const matchedName = content.match(reg)
-      return (matchedName && matchedName[0]) || ''
+      return ((matchedName && matchedName[0]) || '').replace(name + ':', '')
     }
     return {
       name: getMatchedString('name', match[0]),
@@ -37,26 +61,15 @@ export const SingleArticle = (props: { onlyTitle?: boolean; path: string }) => {
   return (
     <div className="single-article">
       {!props.onlyTitle ? (
-        <Markdown content={content}></Markdown>
-      ) : titleContent ? (
-        <div className="title">
-          <h3
-            style={{
-              fontSize: 20,
-              fontWeight: 500,
-            }}
-          >
-            {titleContent.name}
-          </h3>
-          <p>{titleContent.description}</p>
-        </div>
-      ) : null}
+        <Suspense fallback={<Loading />}>
+          <Markdown
+            title={titleContent.name}
+            content={content.replace(reg, '')}
+          ></Markdown>
+        </Suspense>
+      ) : (
+        <ArticleSummary {...titleContent} />
+      )}
     </div>
   )
 }
-
-css`
-  .single-article {
-    padding: 20px 0;
-  }
-`

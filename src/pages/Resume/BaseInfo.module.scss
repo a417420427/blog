@@ -1,0 +1,14 @@
+.BaseInfo {
+  position: absolute;
+  left: 24px;
+  top: 0;
+  width: 200px;
+  padding-top: 20px;
+}
+
+@media screen and(max-width: 768px) {
+  .BaseInfo {
+    position: initial;
+    width: 100%;
+  }
+}

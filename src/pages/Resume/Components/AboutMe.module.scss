@@ -1,0 +1,15 @@
+.AboutMe {
+  width: 100%;
+  > h3 {
+    font-size: 18px;
+    line-height: 30px;
+    white-space: normal;
+  }
+  > div {
+    white-space: normal;
+    font-size: 14px;
+    line-height: 20px;
+    padding: 8px 0;
+    text-indent: 12px;
+  }
+}
