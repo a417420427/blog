@@ -1,7 +1,7 @@
 /******/ (() => { // webpackBootstrap
 /******/ 	var __webpack_modules__ = ({
 
-/***/ 4307:
+/***/ 9199:
 /***/ ((__unused_webpack_module, __unused_webpack___webpack_exports__, __webpack_require__) => {
 
 "use strict";
@@ -389,8 +389,6 @@ const Articles = (0,react_router/* withRouter */.EN)(({
     path: (0,path/* join */.v)(targetMenu.parentPath, targetMenu.name)
   }) : null);
 });
-;// CONCATENATED MODULE: ./src/utils/sort.ts
-const sortedMenu = menu => menu.sort((a, b) => a.parentPath.split('/').length - b.parentPath.split('/').length);
 // EXTERNAL MODULE: ./node_modules/css-loader/dist/cjs.js!./node_modules/sass-loader/dist/cjs.js!./src/pages/MainContent/index.module.scss
 var MainContent_index_module = __webpack_require__(1067);
 ;// CONCATENATED MODULE: ./src/pages/MainContent/index.module.scss
@@ -422,84 +420,19 @@ var MainContent_index_module_update = injectStylesIntoStyleTag_default()(MainCon
 
        /* harmony default export */ const pages_MainContent_index_module = (MainContent_index_module/* default */.Z && MainContent_index_module/* default.locals */.Z.locals ? MainContent_index_module/* default.locals */.Z.locals : undefined);
 
-;// CONCATENATED MODULE: ./src/pages/MainContent/ArticleSummarys.tsx
-/* provided dependency */ var ArticleSummarys_React = __webpack_require__(7294);
-
-
-
-
-
-
-
-
-const ArticleSummarys = (0,react_router/* withRouter */.EN)(({
-  history
-}) => {
-  const onSummaryClick = (0,react.useCallback)(menu => {
-    const params = getMenuParamsByMenu(menu);
-    history.push('/Articles/' + params.type + '/' + params.name);
-  }, [history]);
-  const avalidMenu = (0,react.useMemo)(() => {
-    const mark = (0,path/* getQueryString */.W)('mark', history.location.search);
-    return sortedMenu(menu).filter(menu => !mark || menu.parentPath.startsWith('/' + mark));
-  }, [menu]);
-  return ArticleSummarys_React.createElement("div", null, avalidMenu.map(menu => ArticleSummarys_React.createElement("div", {
-    onClick: () => onSummaryClick(menu),
-    key: menu.name,
-    className: pages_MainContent_index_module.StyledArticle
-  }, ArticleSummarys_React.createElement(SingleArticle, {
-    key: menu.name,
-    onlyTitle: true,
-    path: (0,path/* join */.v)(menu.parentPath, menu.name)
-  }))));
-});
-;// CONCATENATED MODULE: ./src/pages/MainContent/Introduction.tsx
-/* provided dependency */ var Introduction_React = __webpack_require__(7294);
-
-
-
-const IntroductionDetail = (0,react_router/* withRouter */.EN)(({
-  history
-}) => {
-  return Introduction_React.createElement("span", {
-    style: {
-      cursor: 'pointer'
-    },
-    onClick: () => history.push(RouterPaths.Resume)
-  }, "\u70B9\u51FB\u67E5\u770B");
-});
-const info = [{
-  title: '职业',
-  content: '前端开发工程师'
-}, {
-  title: '介绍',
-  content: '目前是一名前端工程师,主要负责前端项目的架构， 日常bug修复， 代码review, 以及部分项目的性能优化'
-}, {
-  title: '掌握技能',
-  content: '主流框架(react, vue, jq等), 小程序, prosemirror,'
-}, {
-  title: '详情',
-  content: Introduction_React.createElement(IntroductionDetail, null)
-}];
-const Introduction = (0,react_router/* withRouter */.EN)(() => {
-  return Introduction_React.createElement("div", {
-    className: pages_MainContent_index_module.Introduction
-  }, Introduction_React.createElement("div", {
-    className: pages_MainContent_index_module.IntroductionTitle
-  }, "\u5173\u4E8E\u6211"), info.map(i => Introduction_React.createElement("div", {
-    className: pages_MainContent_index_module.IntroductionList,
-    key: i.title
-  }, i.title, "\u00A0", i.content)));
-});
 ;// CONCATENATED MODULE: ./src/pages/MainContent/index.tsx
 /* provided dependency */ var MainContent_React = __webpack_require__(7294);
+ //import { ArticleSummarys } from './ArticleSummarys'
 
-
+ //import { Introduction } from './Introduction'
 
 const MainContent = () => {
+  (0,react.useEffect)(() => {
+    location.href = 'http://blogs.zxueping.com/';
+  });
   return MainContent_React.createElement("div", {
     className: pages_MainContent_index_module.MainContent
-  }, MainContent_React.createElement(Introduction, null), MainContent_React.createElement(ArticleSummarys, null));
+  });
 };
 // EXTERNAL MODULE: ./node_modules/css-loader/dist/cjs.js!./node_modules/sass-loader/dist/cjs.js!./src/pages/Marks/index.module.scss
 var Marks_index_module = __webpack_require__(8686);
@@ -15880,7 +15813,7 @@ function _objectWithoutPropertiesLoose(source, excluded) {
 /******/ 	// startup
 /******/ 	// Load entry module and return exports
 /******/ 	// This entry module depends on other loaded chunks and execution need to be delayed
-/******/ 	var __webpack_exports__ = __webpack_require__.O(undefined, [216], () => (__webpack_require__(4307)))
+/******/ 	var __webpack_exports__ = __webpack_require__.O(undefined, [216], () => (__webpack_require__(9199)))
 /******/ 	__webpack_exports__ = __webpack_require__.O(__webpack_exports__);
 /******/ 	
 /******/ })()
