@@ -1,7 +1,7 @@
 import { useCallback, useRef, useState } from 'react'
 import { join } from '../../utils/path'
 import styles from './index.module.scss'
-import { useFileDrag } from './useFileDrag'
+import { useDragFile } from '@a417420427/use-drag-file'
 
 export default () => {
   const [isInDragZoom, setIsInDragZoom] = useState(false)
@@ -27,7 +27,7 @@ export default () => {
     }
     setIsInDragZoom(isInDragZoom())
   }, [])
-  const { dropFiles } = useFileDrag({
+  const { dropFiles } = useDragFile({
     onDrop,
     onDragover,
   })

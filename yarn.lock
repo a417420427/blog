@@ -2,6 +2,11 @@
 # yarn lockfile v1
 
 
+"@a417420427/use-drag-file@^1.0.1":
+  version "1.0.1"
+  resolved "https://registry.yarnpkg.com/@a417420427/use-drag-file/-/use-drag-file-1.0.1.tgz#12d0a3ed9e7cc4485556eb3bd6ec53bcfc7027ea"
+  integrity sha512-vanlDub4SXphq3GOX/UiJEtOHyhekk8GDqso1U11AHwzCn+1ufA8tuCd8BI3BPsalPuyJa47sPexQkzNpOZDRw==
+
 "@babel/code-frame@7.12.11":
   version "7.12.11"
   resolved "https://registry.yarnpkg.com/@babel/code-frame/-/code-frame-7.12.11.tgz#f4ad435aa263db935b8f10f2c552d23fb716a63f"
@@ -1009,18 +1014,6 @@
     tapable "^2.0.0"
     webpack "^5.1.0"
 
-"@types/cordova-plugin-file@^4.3.2":
-  version "4.3.2"
-  resolved "https://registry.yarnpkg.com/@types/cordova-plugin-file/-/cordova-plugin-file-4.3.2.tgz#404d8537b65ad32cb4421e9b466dc01a374b5f9f"
-  integrity sha512-kCvVcLxo2M6NxBCngW8JuFlS3YpsqE6VcH9PKnOdWwtpCBTi7WXhQU9kb0h0/TVX5Bp8ab+qLz0mm9wSkcXdXg==
-  dependencies:
-    cordova-plugin-file "*"
-
-"@types/cordova@^0.0.34":
-  version "0.0.34"
-  resolved "https://registry.yarnpkg.com/@types/cordova/-/cordova-0.0.34.tgz#ea7addf74ecec3d7629827a0c39e2c9addc73d04"
-  integrity sha1-6nrd907Ow9dimCegw54smt3HPQQ=
-
 "@types/eslint-scope@^3.7.0":
   version "3.7.1"
   resolved "https://registry.yarnpkg.com/@types/eslint-scope/-/eslint-scope-3.7.1.tgz#8dc390a7b4f9dd9f1284629efce982e41612116e"
@@ -1046,18 +1039,6 @@
   version "2.0.3"
   resolved "https://registry.yarnpkg.com/@types/file-saver/-/file-saver-2.0.3.tgz#b734c4f5a04d20615eaed3dc106e2ab321082009"
   integrity sha512-MBIou8pd/41jkff7s97B47bc9+p0BszqqDJsO51yDm49uUxeKzrfuNl5fSLC6BpLEWKA8zlwyqALVmXrFwoBHQ==
-
-"@types/filesystem@^0.0.32":
-  version "0.0.32"
-  resolved "https://registry.yarnpkg.com/@types/filesystem/-/filesystem-0.0.32.tgz#307df7cc084a2293c3c1a31151b178063e0a8edf"
-  integrity sha512-Yuf4jR5YYMR2DVgwuCiP11s0xuVRyPKmz8vo6HBY3CGdeMj8af93CFZX+T82+VD1+UqHOxTq31lO7MI7lepBtQ==
-  dependencies:
-    "@types/filewriter" "*"
-
-"@types/filewriter@*":
-  version "0.0.29"
-  resolved "https://registry.yarnpkg.com/@types/filewriter/-/filewriter-0.0.29.tgz#a48795ecadf957f6c0d10e0c34af86c098fa5bee"
-  integrity sha512-BsPXH/irW0ht0Ji6iw/jJaK8Lj3FJemon2gvEqHKpCdDCeemHa+rI3WBGq5z7cDMZgoLjY40oninGxqk+8NzNQ==
 
 "@types/fs-extra@^9.0.8":
   version "9.0.12"
@@ -2272,11 +2253,6 @@ copy-descriptor@^0.1.0:
   version "0.1.1"
   resolved "https://registry.yarnpkg.com/copy-descriptor/-/copy-descriptor-0.1.1.tgz#676f6eb3c39997c2ee1ac3a924fd6124748f578d"
   integrity sha1-Z29us8OZl8LuGsOpJP1hJHSPV40=
-
-cordova-plugin-file@*:
-  version "6.0.2"
-  resolved "https://registry.yarnpkg.com/cordova-plugin-file/-/cordova-plugin-file-6.0.2.tgz#f3911479f8357e9aacb5576674f8d95b31a1fb20"
-  integrity sha512-m7cughw327CjONN/qjzsTpSesLaeybksQh420/gRuSXJX5Zt9NfgsSbqqKDon6jnQ9Mm7h7imgyO2uJ34XMBtA==
 
 core-js-compat@^3.14.0, core-js-compat@^3.16.0:
   version "3.16.0"
