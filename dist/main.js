@@ -1,7 +1,7 @@
 /******/ (() => { // webpackBootstrap
 /******/ 	var __webpack_modules__ = ({
 
-/***/ 9199:
+/***/ 116:
 /***/ ((__unused_webpack_module, __unused_webpack___webpack_exports__, __webpack_require__) => {
 
 "use strict";
@@ -322,8 +322,20 @@ const getMarksByMenu = menus => {
   "name": "webpackCompilation.md",
   "parentPath": "/webpack"
 }]);
-// EXTERNAL MODULE: ./src/utils/path.ts
-var path = __webpack_require__(9982);
+;// CONCATENATED MODULE: ./src/utils/path.ts
+const join = (path, name) => {
+  return !path ? '/' + name : path.lastIndexOf('/') === path.length - 1 ? path + name : path + '/' + name;
+};
+const getQueryString = (name, search) => {
+  var reg = new RegExp('(^|&)' + name + '=([^&]*)(&|$)', 'i');
+  var r = search.substr(1).match(reg);
+
+  if (r != null) {
+    return unescape(r[2]);
+  }
+
+  return null;
+};
 // EXTERNAL MODULE: ./node_modules/css-loader/dist/cjs.js!./node_modules/sass-loader/dist/cjs.js!./src/pages/Articles/index.module.scss
 var Articles_index_module = __webpack_require__(3501);
 ;// CONCATENATED MODULE: ./src/pages/Articles/index.module.scss
@@ -386,7 +398,7 @@ const Articles = (0,react_router/* withRouter */.EN)(({
     className: pages_Articles_index_module.Articles
   }, targetMenu ? Articles_React.createElement(SingleArticle, {
     onlyTitle: false,
-    path: (0,path/* join */.v)(targetMenu.parentPath, targetMenu.name)
+    path: join(targetMenu.parentPath, targetMenu.name)
   }) : null);
 });
 // EXTERNAL MODULE: ./node_modules/css-loader/dist/cjs.js!./node_modules/sass-loader/dist/cjs.js!./src/pages/MainContent/index.module.scss
@@ -550,7 +562,7 @@ var PdfPreview_index_module_update = injectStylesIntoStyleTag_default()(PdfPrevi
 const PdfPreview = (0,react_router/* withRouter */.EN)(({
   history
 }) => {
-  const name = (0,path/* getQueryString */.W)('name', history.location.search);
+  const name = getQueryString('name', history.location.search);
   console.log(name);
   return PdfPreview_React.createElement("div", {
     className: pages_PdfPreview_index_module.PdfPreview
@@ -13078,30 +13090,6 @@ renderApp();
 
 /***/ }),
 
-/***/ 9982:
-/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
-
-"use strict";
-/* harmony export */ __webpack_require__.d(__webpack_exports__, {
-/* harmony export */   "v": () => (/* binding */ join),
-/* harmony export */   "W": () => (/* binding */ getQueryString)
-/* harmony export */ });
-const join = (path, name) => {
-  return !path ? '/' + name : path.lastIndexOf('/') === path.length - 1 ? path + name : path + '/' + name;
-};
-const getQueryString = (name, search) => {
-  var reg = new RegExp('(^|&)' + name + '=([^&]*)(&|$)', 'i');
-  var r = search.substr(1).match(reg);
-
-  if (r != null) {
-    return unescape(r[2]);
-  }
-
-  return null;
-};
-
-/***/ }),
-
 /***/ 3810:
 /***/ ((module, __webpack_exports__, __webpack_require__) => {
 
@@ -15813,7 +15801,7 @@ function _objectWithoutPropertiesLoose(source, excluded) {
 /******/ 	// startup
 /******/ 	// Load entry module and return exports
 /******/ 	// This entry module depends on other loaded chunks and execution need to be delayed
-/******/ 	var __webpack_exports__ = __webpack_require__.O(undefined, [216], () => (__webpack_require__(9199)))
+/******/ 	var __webpack_exports__ = __webpack_require__.O(undefined, [216], () => (__webpack_require__(116)))
 /******/ 	__webpack_exports__ = __webpack_require__.O(__webpack_exports__);
 /******/ 	
 /******/ })()

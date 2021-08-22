@@ -1,5 +1,4 @@
 import { useCallback, useRef, useState } from 'react'
-import { join } from '../../utils/path'
 import styles from './index.module.scss'
 import { useDragFile } from '@a417420427/use-drag-file'
 
@@ -40,7 +39,7 @@ export default () => {
       </div>
       <div className={styles.DragInfo}>
         {dropFiles.map((dropFile) => {
-          const filePath = join(dropFile.fullPath, dropFile.file.name)
+          const filePath = dropFile.fullPath
           return <div key={filePath}>{filePath}</div>
         })}
       </div>

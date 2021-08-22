@@ -82,6 +82,7 @@ async function readEntry(fileEntry) {
     let files = [];
     if (fileEntry.isFile) {
         const file = await readFileEntrySync(fileEntry);
+        console.log(fileEntry.fullPath)
         files.push({
             file,
             fullPath: fileEntry.fullPath,
@@ -117,11 +118,9 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
 /* harmony export */ });
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(7294);
-/* harmony import */ var _utils_path__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(9982);
 /* harmony import */ var _index_module_scss__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(31);
 /* harmony import */ var _a417420427_use_drag_file__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(7044);
 /* provided dependency */ var React = __webpack_require__(7294);
-
 
 
 
@@ -166,7 +165,7 @@ __webpack_require__.r(__webpack_exports__);
   }) : null), React.createElement("div", {
     className: _index_module_scss__WEBPACK_IMPORTED_MODULE_1__/* .default.DragInfo */ .Z.DragInfo
   }, dropFiles.map(dropFile => {
-    const filePath = (0,_utils_path__WEBPACK_IMPORTED_MODULE_3__/* .join */ .v)(dropFile.fullPath, dropFile.file.name);
+    const filePath = dropFile.fullPath;
     return React.createElement("div", {
       key: filePath
     }, filePath);
