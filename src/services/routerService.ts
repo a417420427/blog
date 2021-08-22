@@ -4,4 +4,5 @@ export const RouterPaths = {
   Marks: '/Marks',
   PdfPreview: '/PdfPreview',
   Resume: '/Resume',
+  Sample: '/Sample',
 }

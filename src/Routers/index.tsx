@@ -5,6 +5,7 @@ import { MainContent } from '../pages/MainContent'
 import { Marks } from '../pages/Marks'
 import { PdfPreview } from '../pages/PdfPreview'
 import { Resume } from '../pages/Resume'
+import { Sample } from '../pages/Sample'
 import { RouterPaths } from '../services/routerService'
 
 export const Routers = () => {
@@ -18,6 +19,7 @@ export const Routers = () => {
       <Route component={PdfPreview} path={RouterPaths.PdfPreview}></Route>
 
       <Route component={Resume} path={RouterPaths.Resume}></Route>
+      <Route component={Sample} path={RouterPaths.Sample}></Route>
     </Router>
   )
 }

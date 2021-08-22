@@ -16,6 +16,7 @@
     "experimentalDecorators": true,
     "allowSyntheticDefaultImports": true,
     "allowJs": true,
-    "resolveJsonModule": true
+    "resolveJsonModule": true,
+    "types": ["cordova", "cordova-plugin-file"]
   }
 }
