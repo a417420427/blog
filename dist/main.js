@@ -13080,7 +13080,7 @@ var Sample_index_module = __webpack_require__(31);
 /* provided dependency */ var Sample_React = __webpack_require__(7294);
 
 
-const FileDrag = Sample_React.lazy(() => __webpack_require__.e(/* import() */ 454).then(__webpack_require__.bind(__webpack_require__, 454)));
+const FileDrag = Sample_React.lazy(() => __webpack_require__.e(/* import() */ 928).then(__webpack_require__.bind(__webpack_require__, 3928)));
 const Sample = () => {
   return Sample_React.createElement("div", {
     className: Sample_index_module/* default.Sample */.Z.Sample

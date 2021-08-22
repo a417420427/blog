@@ -38,9 +38,10 @@
     "yarn": "^1.22.11"
   },
   "dependencies": {
-    "@a417420427/use-drag-file": "^1.0.1",
+    "@a417420427/use-drag-file": "^1.0.2",
     "@c4605/toolconfs": "^5.2.2",
     "@types/file-saver": "^2.0.3",
+    "@types/filesystem": "^0.0.32",
     "@types/prosemirror-model": "^1.13.2",
     "@types/prosemirror-schema-basic": "^1.0.2",
     "@types/prosemirror-schema-list": "^1.0.3",

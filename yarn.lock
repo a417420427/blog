@@ -2,10 +2,10 @@
 # yarn lockfile v1
 
 
-"@a417420427/use-drag-file@^1.0.1":
-  version "1.0.1"
-  resolved "https://registry.yarnpkg.com/@a417420427/use-drag-file/-/use-drag-file-1.0.1.tgz#12d0a3ed9e7cc4485556eb3bd6ec53bcfc7027ea"
-  integrity sha512-vanlDub4SXphq3GOX/UiJEtOHyhekk8GDqso1U11AHwzCn+1ufA8tuCd8BI3BPsalPuyJa47sPexQkzNpOZDRw==
+"@a417420427/use-drag-file@^1.0.2":
+  version "1.0.2"
+  resolved "https://registry.yarnpkg.com/@a417420427/use-drag-file/-/use-drag-file-1.0.2.tgz#18fc80ef838cbd275796cdceda7b23d3df857a59"
+  integrity sha512-MItdULFJ9+RWBI/Oe0uLFw+v0q7u2TyUZaEQ8WO70XpFLEca/rFRhjWeZ4H4wPzbmfYvPqV27a7G0O5WhO57tw==
 
 "@babel/code-frame@7.12.11":
   version "7.12.11"
@@ -1039,6 +1039,18 @@
   version "2.0.3"
   resolved "https://registry.yarnpkg.com/@types/file-saver/-/file-saver-2.0.3.tgz#b734c4f5a04d20615eaed3dc106e2ab321082009"
   integrity sha512-MBIou8pd/41jkff7s97B47bc9+p0BszqqDJsO51yDm49uUxeKzrfuNl5fSLC6BpLEWKA8zlwyqALVmXrFwoBHQ==
+
+"@types/filesystem@^0.0.32":
+  version "0.0.32"
+  resolved "https://registry.yarnpkg.com/@types/filesystem/-/filesystem-0.0.32.tgz#307df7cc084a2293c3c1a31151b178063e0a8edf"
+  integrity sha512-Yuf4jR5YYMR2DVgwuCiP11s0xuVRyPKmz8vo6HBY3CGdeMj8af93CFZX+T82+VD1+UqHOxTq31lO7MI7lepBtQ==
+  dependencies:
+    "@types/filewriter" "*"
+
+"@types/filewriter@*":
+  version "0.0.29"
+  resolved "https://registry.yarnpkg.com/@types/filewriter/-/filewriter-0.0.29.tgz#a48795ecadf957f6c0d10e0c34af86c098fa5bee"
+  integrity sha512-BsPXH/irW0ht0Ji6iw/jJaK8Lj3FJemon2gvEqHKpCdDCeemHa+rI3WBGq5z7cDMZgoLjY40oninGxqk+8NzNQ==
 
 "@types/fs-extra@^9.0.8":
   version "9.0.12"
